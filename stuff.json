@@ -1,0 +1,160 @@
+{
+	"positions": [
+		{
+			"position": "Design Engineer",
+			"employer": "Revology Cars",
+			"roles": [
+				"Lead the development of the new analytics platform using Python and React.",
+				"Mentor junior developers and conduct code reviews."
+			],
+			"achievements": [
+				"Successfully launched the product within 9 months, leading to a 40% increase in customer engagement.",
+				"Received the ‘Outstanding Contributor’ award in 2021."
+			],
+			"projects": [
+				{
+					"name": "Placeholder Project 1",
+					"summary": "This is a placeholder summary for project 1.",
+					"description": "This is a placeholder description for project 1. It provides a detailed overview of the project's scope and objectives.",
+					"hw": ["Python", "Node.js", "WebSocket"],
+					"sw": ["Python", "Node.js", "WebSocket"],
+					"languages": ["Python", "Node.js", "WebSocket", "Python", "Node.js", "WebSocket"],
+					"bg": "p1.jpg"
+				},
+				{
+					"name": "Placeholder Project 2",
+					"summary": "This is a placeholder summary for project 2.",
+					"description": "This is a placeholder description for project 2. It provides a detailed overview of the project's scope and objectives.",
+					"hw": ["Python", "Node.js", "WebSocket"],
+					"sw": ["Python", "Node.js", "WebSocket"],
+					"languages": ["JavaScript", "HTML5", "CSS3"],
+					"bg": "p2.jpg"
+				},
+				{
+					"name": "Placeholder Project 3",
+					"summary": "This is a placeholder summary for project 3.",
+					"description": "This is a placeholder description for project 3. It provides a detailed overview of the project's scope and objectives.",
+					"hw": ["Python", "Node.js", "WebSocket"],
+					"sw": ["Python", "Node.js", "WebSocket"],
+					"languages": ["JavaScript", "React", "Node.js"],
+					"bg": "p3.jpg"
+				}
+			]
+		},
+		{
+			"position": "Research Assistant",
+			"employer": "Interface Research Lab",
+			"roles": [
+				"Oversaw the development of mobile applications tailored for retail businesses.",
+				"Managed a team of developers, designers, and QA testers."
+			],
+			"achievements": [
+				"Led the team in a major project that resulted in a 50% reduction in customer complaints due to product issues.",
+				"Developed and executed a go-to-market strategy for three new applications."
+			],
+			"projects": [
+				{
+					"name": "Placeholder Project 4",
+					"summary": "This is a placeholder summary for project 4.",
+					"description": "This is a placeholder description for project 4. It provides a detailed overview of the project's scope and objectives.",
+					"hw": ["Python", "Node.js", "WebSocket"],
+					"sw": ["Python", "Node.js", "WebSocket"],
+					"languages": ["Flutter", "Firebase", "Dart"],
+					"bg": "p3.jpg"
+				},
+				{
+					"name": "Placeholder Project 5",
+					"summary": "This is a placeholder summary for project 5.",
+					"description": "This is a placeholder description for project 5. It provides a detailed overview of the project's scope and objectives.",
+					"hw": ["Python", "Node.js", "WebSocket"],
+					"sw": ["Python", "Node.js", "WebSocket"],
+					"languages": ["Ruby on Rails", "PostgreSQL", "Heroku"],
+					"bg": "p4.jpg"
+				},
+				{
+					"name": "Placeholder Project 6",
+					"summary": "This is a placeholder summary for project 6.",
+					"description": "This is a placeholder description for project 6. It provides a detailed overview of the project's scope and objectives.",
+					"languages": ["Ruby on Rails", "PostgreSQL", "Heroku"],
+					"bg": "p5.jpg"
+				}
+			]
+		},
+		{
+			"position": "Combat Engineer",
+			"employer": "US Air Force Reserve",
+			"roles": [
+				"Developed and maintained the website for the lab.",
+				"Designed and implemented a new website for the lab."
+			],
+			"achievements": [],
+			"projects": [
+				{
+					"name": "Placeholder Project 7",
+					"summary": "This is a placeholder summary for project 7.",
+					"description": "This is a placeholder description for project 7. It provides a detailed overview of the project's scope and objectives.",
+					"hw": ["Python", "Node.js", "WebSocket"],
+					"sw": ["Python", "Node.js", "WebSocket"],
+					"languages": ["HTML5", "CSS3", "JavaScript"],
+					"bg": "p5.jpg"
+				},
+				{
+					"name": "Placeholder Project 8",
+					"summary": "This is a placeholder summary for project 8.",
+					"description": "This is a placeholder description for project 8. It provides a detailed overview of the project's scope and objectives.",
+					"hw": ["Python", "Node.js", "WebSocket"],
+					"sw": ["Python", "Node.js", "WebSocket"],
+					"languages": ["HTML5", "CSS3", "JavaScript"],
+					"bg": "p6.jpg"
+				},
+				{
+					"name": "Placeholder Project 9",
+					"summary": "This is a placeholder summary for project 9.",
+					"description": "This is a placeholder description for project 9. It provides a detailed overview of the project's scope and objectives.",
+					"hw": ["Python", "Node.js", "WebSocket"],
+					"sw": ["Python", "Node.js", "WebSocket"],
+					"languages": ["HTML5", "CSS3", "JavaScript"],
+					"bg": "p7.jpg"
+				}
+			]
+		},
+		{
+			"position": "Technical Flexpert",
+			"employer": "Whalen",
+			"roles": [
+				"Developed and maintained the website for the lab.",
+				"Designed and implemented a new website for the lab."
+			],
+			"achievements": [],
+			"projects": [
+				{
+					"name": "Placeholder Project 10",
+					"summary": "This is a placeholder summary for project 10.",
+					"description": "This is a placeholder description for project 10. It provides a detailed overview of the project's scope and objectives.",
+					"hw": ["Python", "Node.js", "WebSocket"],
+					"sw": ["Python", "Node.js", "WebSocket"],
+					"languages": ["HTML5", "CSS3", "JavaScript"],
+					"bg": "p5.jpg"
+				},
+				{
+					"name": "Placeholder Project 11",
+					"summary": "This is a placeholder summary for project 11.",
+					"description": "This is a placeholder description for project 11. It provides a detailed overview of the project's scope and objectives.",
+					"hw": ["Python", "Node.js", "WebSocket"],
+					"sw": ["Python", "Node.js", "WebSocket"],
+					"languages": ["HTML5", "CSS3", "JavaScript"],
+					"bg": "p6.jpg"
+				},
+				{
+					"name": "Placeholder Project 12",
+					"summary": "This is a placeholder summary for project 12.",
+					"description": "This is a placeholder description for project 12. It provides a detailed overview of the project's scope and objectives.",
+					"hw": ["Python", "Node.js", "WebSocket"],
+					"sw": ["Python", "Node.js", "WebSocket"],
+					"languages": ["Node.js", "AWS Lambda", "API Gateway"],
+					"bg": "p7.jpg"
+				}
+			]
+		}
+	]
+}

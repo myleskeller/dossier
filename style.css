@@ -1,0 +1,366 @@
+:root {
+	--top-bottom-height: 66.666%;
+	--cards-height: 33.333%;
+	--sidebar-width: 15rem;
+	/* --card-width: 20vw; */
+	--card-width: 20rem;
+	--animation-speed: 294ms;
+	--header-padding: 1rem;
+}
+
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+.summary {
+	display: none;
+}
+
+html,
+body {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.box,
+.flip-card,
+header {
+	background-color: hsla(var(--bulma-scheme-h), var(--bulma-scheme-s), var(--bulma-scheme-main-l), 0.95) !important;
+}
+
+.navbar {
+	background-color: transparent !important;
+}
+
+#container {
+	flex-grow: 1;
+	display: flex;
+	padding-bottom: var(--bulma-column-gap);
+}
+
+#sidebar {
+	width: var(--sidebar-width);
+	position: relative;
+	top: calc(var(--bulma-column-gap) * 1);
+	margin-right: var(--bulma-column-gap);
+	border-color: var(--bulma-border);
+	border-radius: var(--bulma-radius-large);
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+	border-style: solid;
+	border-width: 1px;
+	/* transition: transform var(--animation-speed) ease,
+    width var(--animation-speed) ease var(--animation-speed); Delay width transition */
+	/* transition: transform var(--animation-speed) ease,
+    width var(--animation-speed); Delay width transition */
+	transform: translate3d(0, 0, 0); /* performance benefits? */
+	overflow: hidden;
+	margin-bottom: calc(var(--bulma-column-gap) * 3);
+}
+
+#sidebar > p.panel-heading {
+	background-color: transparent;
+	color: hsl(var(--bulma-text-h), var(--bulma-text-s), var(--bulma-text-title-l));
+}
+
+#sidebar.hidden {
+	width: 0;
+	padding: 0;
+	transform: translate3d(0, 0, 0) translateX(calc(var(--sidebar-width) * -1)); /* Preserve 3D transform */
+	margin-right: 0;
+}
+
+#main {
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+	/* height: calc(66.666% + 66.666% + 33.333%); */
+	/* height: calc(100vw - var(--bulma-navbar-height) - var(--header-padding)); */
+}
+
+#top.hidden,
+#bottom.hidden {
+	box-shadow: none;
+	max-height: 0;
+	padding: 0;
+	margin: 0;
+	border: none;
+}
+
+#top,
+#bottom {
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+	transition: max-height var(--animation-speed) ease-out;
+	max-height: 100vh;
+	border-color: var(--bulma-border);
+	border-radius: var(--bulma-radius-large);
+	border-style: solid;
+	border-width: 1px;
+	/* height: var(--top-bottom-height); */
+	overflow: hidden;
+	/* margin: var(--bulma-column-gap) calc(var(--bulma-column-gap) * 2); */
+	margin: calc(var(--bulma-column-gap) * 2);
+	box-shadow: var(--bulma-box-shadow);
+}
+#bottom {
+	margin-bottom: var(--bulma-column-gap);
+}
+
+#main,
+#bottom {
+	width: calc(100vw - var(--sidebar-width) - var(--bulma-column-gap) * 5);
+}
+
+header {
+	background-color: var(--bulma-scheme-main);
+	align-items: center;
+	display: flex;
+	padding-top: var(--header-padding);
+	padding-bottom: var(--header-padding);
+	padding-left: calc(var(--bulma-column-gap) + 0.75rem); /* manually bumped out for visual symmetry */
+	padding-right: var(--bulma-column-gap);
+	z-index: calc(42069 - 1);
+}
+
+.fade-overlay {
+	position: absolute;
+	bottom: var(--bulma-column-gap);
+	width: calc(var(--bulma-column-gap) * 4);
+	height: calc(var(--cards-height) - var(--bulma-column-gap) * 2);
+	transition: opacity 0.5s ease, visibility 0.5s ease; /* Smooth transitions for opacity and visibility */
+	opacity: 1;
+	visibility: visible;
+	pointer-events: none;
+}
+
+.fade-overlay.right {
+	right: 0;
+	background-image: linear-gradient(
+		to right,
+		hsla(var(--bulma-scheme-h), var(--bulma-scheme-s), var(--bulma-scheme-main-l), 0) 0%,
+		hsla(var(--bulma-scheme-h), var(--bulma-scheme-s), var(--bulma-scheme-main-l), 1) 50%,
+		hsla(var(--bulma-scheme-h), var(--bulma-scheme-s), var(--bulma-scheme-main-l), 1) 100%
+	);
+}
+
+.fade-overlay.left {
+	/* left: 0; */
+	/* this may not work in all situations */
+	left: calc(var(--sidebar-width) + var(--bulma-column-gap) * (3 - 2));
+	background-image: linear-gradient(
+		to left,
+		hsla(var(--bulma-scheme-h), var(--bulma-scheme-s), var(--bulma-scheme-main-l), 0) 0%,
+		hsla(var(--bulma-scheme-h), var(--bulma-scheme-s), var(--bulma-scheme-main-l), 1) 50%,
+		hsla(var(--bulma-scheme-h), var(--bulma-scheme-s), var(--bulma-scheme-main-l), 1) 100%
+	);
+}
+
+.fade-overlay.top {
+	bottom: auto;
+	top: calc(var(--bulma-navbar-height) + var(--header-padding) + var(--header-padding));
+}
+
+.fade-overlay.left.top {
+	left: calc(var(--sidebar-width) + var(--bulma-column-gap) * (3 - 2));
+}
+
+.fade-overlay.hidden {
+	opacity: 0;
+	visibility: hidden;
+}
+
+#cards {
+	height: var(--cards-height);
+	margin: var(--bulma-column-gap);
+	/* margin-top: var(--bulma-column-gap);
+  margin-left: var(--bulma-column-gap);
+  margin-right: var(--bulma-column-gap); */
+	margin-top: 0;
+	padding-top: var(--bulma-column-gap);
+	padding-bottom: var(--bulma-column-gap);
+	overflow-x: auto; /* Enables horizontal scrolling if content overflows */
+	margin-bottom: calc(var(--bulma-column-gap) * 2);
+}
+
+h1.title.name {
+	/* text-shadow: 0px 0px 3px
+    hsla(
+      calc(var(--bulma-scheme-h) + 180),
+      var(--bulma-scheme-s),
+      var(--bulma-scheme-main-l),
+      0.85
+    ); */
+	/* mix-blend-mode: color-burn; */
+	filter: drop-shadow(
+		2px 2px 5px hsla(calc(var(--bulma-scheme-h) + 180), var(--bulma-scheme-s), var(--bulma-scheme-main-l), 0.75)
+	);
+}
+
+.flip-card {
+	width: var(--card-width);
+	/* height: var(--card-width); */
+	transition: transform var(--animation-speed); /* flip animation stuff */
+	transition-duration: var(--bulma-duration);
+	/* transition-property: background-color,border-color,box-shadow,color; */
+	transform-style: preserve-3d; /* flip animation stuff */
+	position: relative; /* flip animation stuff */
+	margin-inline: var(--bulma-column-gap);
+	margin-bottom: 0 !important;
+	border-color: var(--bulma-border);
+	/* border-radius: var(--bulma-radius-large); */
+	border-radius: calc(var(--bulma-radius-large) * 1.05);
+	border-style: solid;
+	border-width: 1px;
+	flex-basis: auto;
+	flex-grow: 0;
+	flex-shrink: 0;
+	white-space: normal !important;
+	text-align: left !important;
+	padding: 0px !important;
+	/* box-shadow: var(--bulma-card-shadow);
+    color: var(--bulma-card-color); */
+	max-width: 100%;
+}
+
+.card-overlay::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	border-radius: var(--bulma-radius-large);
+	/* border-radius: calc(var(--bulma-radius-large) * 0.99); */
+	border-style: solid;
+	border-width: 1px;
+	border-color: transparent;
+	width: 100%;
+	width: 100%;
+	height: 100%;
+	background: hsla(calc(var(--bulma-scheme-h) + 180), var(--bulma-scheme-s), var(--bulma-scheme-main-l), 0.5);
+	transition: background-color calc(var(--animation-speed) / 2) ease;
+	pointer-events: none; /* Ensure the overlay doesn't interfere with clicks */
+}
+
+.card-overlay:hover::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	border-radius: var(--bulma-radius-large);
+	border-style: solid;
+	border-width: 1px;
+	border-color: transparent;
+	width: 100%;
+	height: 100%;
+	background: hsla(calc(var(--bulma-scheme-h) + 180), var(--bulma-scheme-s), var(--bulma-scheme-main-l), 0.375);
+}
+
+.flip-card.current_project .card-back .title,
+.flip-card.current_project .card-back .tags {
+	display: none;
+}
+
+.flip-card .card-back .title,
+.flip-card .card-back .tags {
+	display: block;
+}
+
+.flip-card .card-face {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	backface-visibility: hidden; /* Hides the back side of the element when it is not facing the screen */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.flip-card .card-front {
+	transform: rotateY(0deg); /* Ensures the card is showing the front*/
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: calc(var(--bulma-block-spacing) * 4);
+}
+
+.flip-card.back,
+.flip-card .card-back {
+	transform: rotateY(180deg);
+	padding: calc(var(--bulma-block-spacing) * 2);
+}
+
+.card-back {
+	/* border-radius: calc(var(--bulma-radius-large) * 0.99); */
+	border-radius: var(--bulma-radius-large);
+}
+
+/* this is not the correct solution to the margin problem causing the offset of the front/back of cards */
+.column.card {
+	padding: 0px !important;
+}
+
+.card.active {
+	/* background-color: red; */
+}
+
+.flip-card.back:hover {
+	/* transform: rotateY(180deg) translateY(-0.5em); */
+	/* background-color: black; */
+}
+
+.flip-card:hover {
+	/* transform: translateY(-0.5em); */
+	/* background-color: var(--bulma-button-text-hover-background-color); */
+	/* background-color: black;
+  color: var(--bulma-button-text-hover-color); */
+}
+
+#navbar {
+	flex-grow: 1;
+	padding: var(--py) var(--px);
+	height: var(--bulma-navbar-height);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	z-index: 42069;
+}
+
+.is-text {
+	text-decoration: none !important;
+}
+
+#ui_button {
+	position: relative;
+	transition: transform calc(var(--animation-speed) * 1.5) ease-out;
+}
+
+#ui_button.hidden {
+	transform: translateY(calc(var(--bulma-navbar-height) * -2));
+}
+
+#dark_toggle,
+#filter {
+	position: relative; /* Make sure the button is the relative container */
+	display: flex; /* Use flex to center the icons horizontally and vertically */
+	justify-content: center;
+	align-items: center;
+}
+
+#dark_toggle i,
+#filter i {
+	position: absolute;
+	transition: opacity calc(var(--animation-speed) * 0.5) ease, transform calc(var(--animation-speed) * 0.5) ease;
+	opacity: 0; /* Start icons as invisible */
+	transform: scale(0.5); /* Start icons smaller */
+	display: inline-block; /* Ensures transform applies correctly */
+}
+
+#dark_toggle i.active,
+#filter i.active {
+	opacity: 1;
+	transform: scale(1); /* Scale to normal size */
+}
