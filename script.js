@@ -17,12 +17,14 @@ document.addEventListener('DOMContentLoaded', () => {
 	const sidebar_sw = document.querySelector('#sidebar .sw');
 	const sidebar_languages = document.querySelector('#sidebar .languages');
 	const contact = document.querySelector('#contact_button');
+	const resume = document.querySelector('#resume_button');
 	let color_scheme = '';
 	const json_file = 'stuff.json';
 	const sserddaLiamE = 'bXlsZXMua2VsbGVyQGdtYWlsLmNvbQ==';
 	const rebmuNenohP = 'ODEzLTQ1OS0xNzM5';
 	const xiffuSetiSlanoisseforP = 'bXlsZXNrZWxsZXI=';
 	const chars = `0x12_3z456e7~89!@r#$-%A^&*(q)`.split('').sort((b, a) => (Math.random() > 0.5 ? 1 : -1));
+	tag_animation_delay = 100;
 
 	// TODO: ensure everything is responsive :')
 
@@ -70,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
 								reorderCards(card.querySelector('.position').textContent);
 								fetchPositionsAndAssignProjects(card.querySelector('.position').textContent);
 								identifyPositionSkills(card.querySelector('.position').textContent);
-								updateBottomWithPosition(bottom, data, card);
+								updateBottomWithPosition(data, card);
 								// if card is project (with back facing)
 							} else {
 								updateBottomWithProject(card.querySelector('.name').textContent);
@@ -86,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
 								_card.classList.remove('current_project');
 								_card.querySelector('.card-back').classList.add('card-overlay');
 							});
-							updateBottomWithPosition(bottom, data, card);
+							updateBottomWithPosition(data, card);
 							identifyPositionSkills(card.querySelector('.position').textContent);
 							scrollActivePositionCardIntoView();
 						}
@@ -103,56 +105,108 @@ document.addEventListener('DOMContentLoaded', () => {
 			.then((data) => {
 				// create flattened list of all language, hw, and sw of projects in active position from stuff.json
 				const position_data = data.positions.find((p) => p.position === position);
-				console.log(position_data);
+				// console.log(position_data);
 				// create flattened list of all languages, hw, and sw from projects found in position_data
 				const allTags = position_data.projects
 					.reduce((acc, project) => {
 						return [...acc, ...project.languages, ...project.hw, ...project.sw];
 					}, [])
 					.filter((tag, index, self) => self.indexOf(tag) === index);
-				console.log(allTags);
+				// console.log(allTags);
+				const allSkills = position_data.role_hw.concat(
+					position_data.role_sw,
+					position_data.role_languages,
+					position_data.achievement_hw,
+					position_data.achievement_sw,
+					position_data.achievement_languages,
+					allTags
+				);
+				// console.log(allSkills);
+
 				// add class.has-background-primary-soft has-text-primary-soft-invert to all tags in sidebar
 				sidebar_languages.querySelectorAll('.tag').forEach((tag) => {
-					if (allTags.includes(tag.innerText)) {
+					if (allSkills.includes(tag.innerText)) {
 						tag.classList.add('has-background-primary-soft', 'has-text-primary-soft-invert');
 					}
 				});
 				sidebar_hw.querySelectorAll('.tag').forEach((tag) => {
-					if (allTags.includes(tag.innerText)) {
+					if (allSkills.includes(tag.innerText)) {
 						tag.classList.add('has-background-primary-soft', 'has-text-primary-soft-invert');
 					}
 				});
 				sidebar_sw.querySelectorAll('.tag').forEach((tag) => {
-					if (allTags.includes(tag.innerText)) {
+					if (allSkills.includes(tag.innerText)) {
 						tag.classList.add('has-background-primary-soft', 'has-text-primary-soft-invert');
 					}
 				});
 			});
 	}
 	// updates #bottom with position information
-	function updateBottomWithPosition(bottom, data, card) {
+	function updateBottomWithPosition(data, card) {
 		bottom.innerHTML = `
-                  <div class="container">
-                    <h2 class="subtitle">Roles</h2>
+                  <div class="container scrollable">
+					<div class="columns">
+						<h2 class="column is-narrow">Roles</h2>
+							<div class="column">
+							<div class="tags role_skills"></div>
+						</div>
+					</div>
                     <ul class="roles"></ul>
                     <div class="block"></div>
-                    <h2 class="subtitle">Achievements</h2>
-                    <ul class="achievements"></ul>
+					<div class="columns">
+						<h2 class="column is-narrow">Achievements</h2>
+							<div class="column">
+							<div class="tags achievement_skills"></div>
+						</div>
+					</div>
+					<ul class="achievements"></ul>
                   </div>
+				  <div class="gradient gradient-top"></div>
+  				  <div class="gradient gradient-bottom"></div>
                 `;
 		data.positions.forEach((position) => {
 			if (position.position === card.querySelector('.position').textContent) {
+				// flatten "position.languages", "position.hw", and "position.sw" into one list and add to .skills
+				const role_skills = [...position.role_languages, ...position.role_hw, ...position.role_sw];
+				console.log(role_skills);
+				role_skills.forEach((skill, index) => {
+					const tag = document.createElement('span');
+					tag.classList.add('tag');
+					tag.textContent = skill;
+					// bottom.querySelector('.role_skills').appendChild(tag);
+					setTimeout(() => {
+						bottom.querySelector('.role_skills').appendChild(tag);
+					}, index * tag_animation_delay); // 100ms delay between each tag
+				});
+				const achievement_skills = [
+					...position.achievement_languages,
+					...position.achievement_hw,
+					...position.achievement_sw,
+				];
+				// console.log(achievement_skills);
+				achievement_skills.forEach((skill, index) => {
+					const tag = document.createElement('span');
+					tag.classList.add('tag');
+					tag.textContent = skill;
+					setTimeout(() => {
+						bottom.querySelector('.achievement_skills').appendChild(tag);
+					}, index * tag_animation_delay); // 100ms delay between each tag
+				});
 				// add roles from current position to .roles
-				position.roles.forEach((role) => {
+				position.roles.forEach((role, index) => {
 					const li = document.createElement('li');
 					li.textContent = role;
+					// setTimeout(() => {
 					bottom.querySelector('.roles').appendChild(li);
+					// }, index * tag_animation_delay); // 100ms delay between each tag
 				});
 				// add achievements from current position to .achievements
-				position.achievements.forEach((achievement) => {
+				position.achievements.forEach((achievement, index) => {
 					const li = document.createElement('li');
 					li.textContent = achievement;
+					// setTimeout(() => {
 					bottom.querySelector('.achievements').appendChild(li);
+					// }, index * tag_animation_delay); // 100ms delay between each tag
 				});
 			}
 		});
@@ -179,14 +233,17 @@ document.addEventListener('DOMContentLoaded', () => {
 				if (projectsList) {
 					const project_data = projectsList.find((project_data) => project_data.name === projectTitle);
 					if (project_data) {
-						const bottom = document.getElementById('bottom');
+						// const bottom = document.getElementById('bottom');
 
 						// add html to bottom
 						bottom.innerHTML = `
-            <div class="container">
-              <h1 class="title name"></h1>
-              <div class="tags languages"></div>
-              <div class="block"></div>
+            <div class="container scrollable">
+			<div class="columns">
+              <h2 class="column is-narrow name"></h2>
+				<div class="column">
+					<div class="tags project_skills"></div>
+				</div>
+              </div>
               <div class="description"></div>
             </div>
             `;
@@ -196,30 +253,53 @@ document.addEventListener('DOMContentLoaded', () => {
 						if (projectName) {
 							projectName.textContent = project_data.name;
 						}
-
 						// add description
 						var projectdescription = bottom.querySelector('.description');
 						if (projectdescription) {
-							projectdescription.textContent = project_data.description;
+							projectdescription.innerHTML = project_data.description;
 						}
-
 						// find card in cards containing .title matching projectTitle
 						const activeCard = document.querySelector(`.current_project .card-back`);
 						// remove card-overlay class from card
 						activeCard.classList.remove('card-overlay');
-
 						// add tags
-						var projectLanguages = bottom.querySelector('.languages');
-						if (projectLanguages) {
-							projectLanguages.innerHTML = '';
-							project_data.languages.forEach((language) => {
+						var projectSkills = bottom.querySelector('.project_skills');
+						projectSkills.innerHTML = '';
+						// create a list combining project_data.languages, project_data.sw, and project_data.hw
+						if (project_data.sw) {
+							project_data.sw.forEach((software, index) => {
+								const technologyTag = document.createElement('span');
+								technologyTag.className = 'tag';
+								technologyTag.textContent = software;
+								// projectSkills.appendChild(technologyTag);
+								setTimeout(() => {
+									projectSkills.appendChild(technologyTag);
+								}, index * tag_animation_delay); // 100ms delay between each tag
+							});
+						}
+						if (project_data.hw) {
+							project_data.hw.forEach((hardware, index) => {
+								const technologyTag = document.createElement('span');
+								technologyTag.className = 'tag';
+								technologyTag.textContent = hardware;
+								// projectSkills.appendChild(technologyTag);
+								setTimeout(() => {
+									projectSkills.appendChild(technologyTag);
+								}, index * tag_animation_delay); // 100ms delay between each tag
+							});
+						}
+						if (project_data.languages) {
+							project_data.languages.forEach((language, index) => {
 								const technologyTag = document.createElement('span');
 								technologyTag.className = 'tag';
 								technologyTag.textContent = language;
-								projectLanguages.appendChild(technologyTag);
+
+								// projectSkills.appendChild(technologyTag);
+								setTimeout(() => {
+									projectSkills.appendChild(technologyTag);
+								}, index * tag_animation_delay); // 100ms delay between each tag
 							});
 						}
-
 						identifyProjectSkills(project_data);
 					}
 					scrollCurrentProjectCardIntoView();
@@ -321,7 +401,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		handleDecrypt(originalName);
 	}
 
-	function emptyContents(elementID, HrefElementID) {
+	function emptyContactInfo(elementID, HrefElementID) {
 		document.getElementById(elementID).innerText = '';
 		document.getElementById(HrefElementID).href = '';
 	}
@@ -335,11 +415,16 @@ document.addEventListener('DOMContentLoaded', () => {
 			decodeText(xiffuSetiSlanoisseforP, 'l', 'nIdekniL', 'ferHnIdekniL');
 			decodeText(xiffuSetiSlanoisseforP, 'g', 'buHtiG', 'ferHbuHtiG');
 		} else {
-			emptyContents('sserddaLiamE', 'ferHsserddaLiamE');
-			emptyContents('rebmuNenohP', 'ferHrebmuNenohP');
-			emptyContents('nIdekniL', 'ferHnIdekniL');
-			emptyContents('buHtiG', 'ferHbuHtiG');
+			emptyContactInfo('sserddaLiamE', 'ferHsserddaLiamE');
+			emptyContactInfo('rebmuNenohP', 'ferHrebmuNenohP');
+			emptyContactInfo('nIdekniL', 'ferHnIdekniL');
+			emptyContactInfo('buHtiG', 'ferHbuHtiG');
 		}
+	});
+
+	resume.addEventListener('click', () => {
+		const resume_dropdown = document.getElementById('resume_dropdown');
+		resume_dropdown.classList.toggle('is-active');
 	});
 
 	// makes ui_button have same effect as clicking active card

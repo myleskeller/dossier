@@ -2,6 +2,9 @@
 <!-- TODO: add modal initiation to clicking on .current_project card -->
 <!-- TODO: attempt recycling #top with .position and .employer and remove .active card -->
 <!-- TODO: fix margins of all primary divs -->
+<!-- TODO: figure out viewport height discrepancy between Windows and Mac -->
+<!-- TODO: figure out scrollbar skinning for Windows (and Mac, i guess) -->
+<!-- TODO: figure out font inconsistencies between windows and Mac -->
 
 <!DOCTYPE html>
 <html>
@@ -12,6 +15,10 @@
 		<link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.2/css/all.css" />
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css" />
 		<link rel="stylesheet" href="style.css" />
+		<link rel="icon" href="favicon.svg" />
+		<link rel="”mask-icon”" href="favicon.svg”" color="#000000" />
+		<link rel="apple-touch-icon" href="apple-touch-icon.png" />
+
 		<script src="script.js"></script>
 	</head>
 	<body>
@@ -27,7 +34,7 @@
 						</span>
 					</button>
 					<a class="navbar-item button is-text has-text-weight-semibold" href="./">
-						<i class="fa fa-regular fa-squirrel"></i>MylesKeller</a
+						<i class="fa fa-regular fa-dumpster-fire"></i>MylesKeller</a
 					>
 				</div>
 
@@ -50,6 +57,7 @@
 										<i class="fa fa-lg fa-image"></i>
 									</span>
 								</button>
+
 								<button type="button" id="dark_toggle" class="button">
 									<span class="icon is-medium">
 										<i class="fa fa-lg fa-moon active"></i>
@@ -57,13 +65,38 @@
 									</span>
 								</button>
 
-								<a class="button is-primary">
-									<strong>Résumé</strong>
-								</a>
-								<!-- <a class="button is-light">Contact</a> -->
+								<div class="dropdown is-right" id="resume_dropdown">
+									<div class="dropdown-trigger">
+										<button
+											type="button"
+											class="button is-primary"
+											id="resume_button"
+											aria-haspopup="true"
+											aria-controls="dropdown-menu1">
+											<span><strong>Résumé</strong></span>
+											<span class="icon is-small">
+												<i class="fas fa-angle-down" aria-hidden="true"></i>
+											</span>
+										</button>
+									</div>
+									<div class="dropdown-menu" id="dropdown-menu1" role="menu">
+										<div class="dropdown-content">
+											<a href="#" class="dropdown-item">Defense</a>
+											<a href="#" class="dropdown-item">Automotive</a>
+											<a href="#" class="dropdown-item">Biomedical</a>
+											<a href="#" class="dropdown-item">Manufacturing</a>
+											<a href="#" class="dropdown-item">Software</a>
+											<!-- <a href="#" class="dropdown-item level"><div class="level-left"><div class="level-item">Software</div></div><div class="level-right"><i class="level-item fa-solid fa-download"></i></div></a> -->
+											<hr class="dropdown-divider" />
+											<a href="#" class="dropdown-item">General (CV)</a>
+										</div>
+									</div>
+								</div>
+
 								<div class="dropdown is-right" id="contact_dropdown">
 									<div class="dropdown-trigger">
 										<button
+											type="button"
 											class="button is-primary"
 											id="contact_button"
 											aria-haspopup="true"
@@ -80,15 +113,15 @@
 												<i class="fa-lg fa-solid fa-envelope"></i>
 												<code id="sserddaLiamE"></code>
 											</a>
-											<hr class="dropdown-divider" />
+											<!-- <hr class="dropdown-divider" /> -->
 											<a id="ferHrebmuNenohP" class="dropdown-item">
 												<i class="fa-lg fa-solid fa-phone"></i> <code id="rebmuNenohP"></code>
 											</a>
-											<hr class="dropdown-divider" />
+											<!-- <hr class="dropdown-divider" /> -->
 											<a id="ferHnIdekniL" class="dropdown-item"
 												><i class="fa-lg fa-brands fa-linkedin"></i><code id="nIdekniL"></code
 											></a>
-											<hr class="dropdown-divider" />
+											<!-- <hr class="dropdown-divider" /> -->
 											<a id="ferHbuHtiG" class="dropdown-item"
 												><i class="fa-lg fa-brands fa-github"></i><code id="buHtiG"></code
 											></a>
@@ -149,12 +182,11 @@
 				<div id="cards" class="field is-grouped"></div>
 				<div class="fade-overlay right"></div>
 				<div class="fade-overlay left"></div>
-
-				<div id="bottom" class="box hidden"></div>
+				<div id="bottom" class="scrollable-parent box content hidden"></div>
 			</div>
 		</div>
-		<div id="animated_bg" style="position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1">
-			<svg
+		<!-- <div id="animated_bg" style="position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1"> -->
+		<!-- <svg
 				xmlns="http://www.w3.org/2000/svg"
 				xmlns:xlink="http://www.w3.org/1999/xlink"
 				viewBox="0 0 500 350"
@@ -275,7 +307,7 @@
 					</path>
 					<g></g>
 				</g>
-			</svg>
-		</div>
+			</svg> -->
+		<!-- </div> -->
 	</body>
 </html>

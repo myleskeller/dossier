@@ -1,9 +1,12 @@
 :root {
 	--top-bottom-height: 66.666%;
 	--cards-height: 33.333%;
-	--sidebar-width: 15rem;
-	/* --card-width: 20vw; */
-	--card-width: 20rem;
+	--cards-min-height: 10rem;
+	--sidebar-min-width: 15rem;
+	--sidebar-max-width: 20rem;
+	--card-max-width: 19rem;
+	--card-min-width: 15rem;
+	--card-width: 19rem;
 	--animation-speed: 294ms;
 	--header-padding: 1rem;
 }
@@ -26,9 +29,28 @@ body {
 }
 
 .box,
-.flip-card,
-header {
+.flip-card {
 	background-color: hsla(var(--bulma-scheme-h), var(--bulma-scheme-s), var(--bulma-scheme-main-l), 0.95) !important;
+}
+
+.content h2,
+.columns:not(:last-child) {
+	margin-bottom: 0;
+}
+
+.content ul {
+	margin-top: 0;
+}
+
+.role_skills,
+.achievement_skills,
+.project_skills {
+	top: 0.25rem;
+	position: relative;
+}
+
+.dropdown-item.level {
+	margin-bottom: 0;
 }
 
 .navbar {
@@ -38,14 +60,16 @@ header {
 #container {
 	flex-grow: 1;
 	display: flex;
-	padding-bottom: var(--bulma-column-gap);
+	/* padding-bottom: var(--bulma-block-spacing); */
+	height: calc(100vh - (var(--bulma-navbar-height) + var(--bulma-block-spacing) * 3));
 }
 
 #sidebar {
-	width: var(--sidebar-width);
+	min-width: var(--sidebar-min-width);
+	max-width: var(--sidebar-max-width);
 	position: relative;
-	top: calc(var(--bulma-column-gap) * 1);
-	margin-right: var(--bulma-column-gap);
+	/* top: calc(var(--bulma-column-gap) * 1); */
+	/* margin-right: var(--bulma-column-gap); */
 	border-color: var(--bulma-border);
 	border-radius: var(--bulma-radius-large);
 	border-top-left-radius: 0;
@@ -58,7 +82,8 @@ header {
     width var(--animation-speed); Delay width transition */
 	transform: translate3d(0, 0, 0); /* performance benefits? */
 	overflow: hidden;
-	margin-bottom: calc(var(--bulma-column-gap) * 3);
+	/* margin-bottom: calc(var(--bulma-column-gap) * 3); */
+	margin-bottom: var(--bulma-block-spacing);
 }
 
 #sidebar > p.panel-heading {
@@ -68,17 +93,27 @@ header {
 
 #sidebar.hidden {
 	width: 0;
+	min-width: 0;
+	max-width: 0;
 	padding: 0;
 	transform: translate3d(0, 0, 0) translateX(calc(var(--sidebar-width) * -1)); /* Preserve 3D transform */
 	margin-right: 0;
+	border: none;
 }
 
 #main {
 	display: flex;
 	flex-direction: column;
 	flex-grow: 1;
-	/* height: calc(66.666% + 66.666% + 33.333%); */
-	/* height: calc(100vw - var(--bulma-navbar-height) - var(--header-padding)); */
+	/* height: calc(100vh - 83.9931px); */
+	/* top: 83.9931px; */
+	/* position: relative; */
+
+	/* height: calc(100vh - (var(--bulma-navbar-height) + var(--bulma-block-spacing) * 4)); */
+	/* height: calc(100vh - var(--bulma-navbar-height) - var(--header-padding)); */
+	margin-left: var(--bulma-block-spacing);
+	margin-right: var(--bulma-block-spacing);
+	margin-bottom: var(--bulma-block-spacing);
 }
 
 #top.hidden,
@@ -96,7 +131,7 @@ header {
 	flex-direction: column;
 	flex-grow: 1;
 	transition: max-height var(--animation-speed) ease-out;
-	max-height: 100vh;
+	/* max-height: 100vh; */
 	border-color: var(--bulma-border);
 	border-radius: var(--bulma-radius-large);
 	border-style: solid;
@@ -104,27 +139,82 @@ header {
 	/* height: var(--top-bottom-height); */
 	overflow: hidden;
 	/* margin: var(--bulma-column-gap) calc(var(--bulma-column-gap) * 2); */
-	margin: calc(var(--bulma-column-gap) * 2);
+	/* margin: calc(var(--bulma-column-gap) * 2); */
+	/* margin-left: var(--bulma-column-gap);
+	margin-right: var(--bulma-column-gap); */
 	box-shadow: var(--bulma-box-shadow);
 }
-#bottom {
-	margin-bottom: var(--bulma-column-gap);
+.scrollable-parent {
+	margin-top: var(--bulma-block-spacing);
+	/* margin-bottom: var(--bulma-block-spacing); */
+	/* overflow-y: auto; */
+	overflow: hidden;
+	position: relative;
+	padding-top: calc(var(--bulma-block-spacing) * -1);
+	padding-bottom: calc(var(--bulma-block-spacing) * -1);
+}
+
+.scrollable {
+	padding-top: var(--bulma-block-spacing);
+	padding-bottom: var(--bulma-block-spacing);
+	height: 100%;
+	overflow-y: auto;
+	overflow-x: hidden;
+	position: relative;
+	z-index: 1; /* Ensure the scrollable content is above the gradient pseudo-elements */
+}
+
+.gradient {
+	position: absolute;
+	left: 0;
+	right: 0;
+	height: var(--bulma-block-spacing);
+	pointer-events: none; /* Ensure the gradient bars do not interfere with scrolling */
+	z-index: 2; /* Ensure the gradient bars are above the content */
+}
+
+.gradient-top {
+	top: 0;
+	/* background: linear-gradient(to bottom, var(--bulma-scheme-main), transparent); */
+
+	background-image: linear-gradient(
+		to top,
+		hsla(var(--bulma-scheme-h), var(--bulma-scheme-s), var(--bulma-scheme-main-l), 0) 0%,
+		hsla(var(--bulma-scheme-h), var(--bulma-scheme-s), var(--bulma-scheme-main-l), 1) 75%,
+		hsla(var(--bulma-scheme-h), var(--bulma-scheme-s), var(--bulma-scheme-main-l), 1) 100%
+	);
+}
+
+.gradient-bottom {
+	bottom: 0;
+	/* background: linear-gradient(to top, var(--bulma-scheme-main), transparent); */
+	background-image: linear-gradient(
+		to bottom,
+		hsla(var(--bulma-scheme-h), var(--bulma-scheme-s), var(--bulma-scheme-main-l), 0) 0%,
+		hsla(var(--bulma-scheme-h), var(--bulma-scheme-s), var(--bulma-scheme-main-l), 1) 75%,
+		hsla(var(--bulma-scheme-h), var(--bulma-scheme-s), var(--bulma-scheme-main-l), 1) 100%
+	);
 }
 
 #main,
 #bottom {
-	width: calc(100vw - var(--sidebar-width) - var(--bulma-column-gap) * 5);
+	/* width: calc(100vw - var(--sidebar-width) - var(--bulma-column-gap) * 5); */
+	width: calc(100vw - var(--sidebar-min-width) - var(--bulma-block-spacing) * 2);
 }
 
 header {
-	background-color: var(--bulma-scheme-main);
+	/* background-color: var(--bulma-scheme-main); */
+	background-color: transparent !important;
 	align-items: center;
 	display: flex;
-	padding-top: var(--header-padding);
-	padding-bottom: var(--header-padding);
+	padding-top: var(--bulma-block-spacing);
+	padding-bottom: var(--bulma-block-spacing);
+	margin-bottom: var(--bulma-block-spacing);
 	padding-left: calc(var(--bulma-column-gap) + 0.75rem); /* manually bumped out for visual symmetry */
 	padding-right: var(--bulma-column-gap);
 	z-index: calc(42069 - 1);
+	/* margin-bottom: var(--bulma-block-spacing); */
+	/* margin-top: var(--bulma-block-spacing); */
 }
 
 .fade-overlay {
@@ -176,15 +266,18 @@ header {
 
 #cards {
 	height: var(--cards-height);
-	margin: var(--bulma-column-gap);
+	min-height: var(--cards-min-height);
+	/* margin: var(--bulma-column-gap); */
 	/* margin-top: var(--bulma-column-gap);
   margin-left: var(--bulma-column-gap);
   margin-right: var(--bulma-column-gap); */
-	margin-top: 0;
-	padding-top: var(--bulma-column-gap);
-	padding-bottom: var(--bulma-column-gap);
+	/* margin-top: 0; */
+	/* padding-top: var(--bulma-column-gap);
+	padding-bottom: var(--bulma-column-gap); */
 	overflow-x: auto; /* Enables horizontal scrolling if content overflows */
-	margin-bottom: calc(var(--bulma-column-gap) * 2);
+	/* margin-bottom: calc(var(--bulma-block-spacing) * 2); */
+	margin-bottom: 0;
+	gap: calc(var(--bulma-block-spacing) * 2);
 }
 
 h1.title.name {
@@ -202,7 +295,9 @@ h1.title.name {
 }
 
 .flip-card {
+	min-width: var(--card-min-width);
 	width: var(--card-width);
+	max-width: var(--card-max-width);
 	/* height: var(--card-width); */
 	transition: transform var(--animation-speed); /* flip animation stuff */
 	transition-duration: var(--bulma-duration);
@@ -213,7 +308,7 @@ h1.title.name {
 	margin-bottom: 0 !important;
 	border-color: var(--bulma-border);
 	/* border-radius: var(--bulma-radius-large); */
-	border-radius: calc(var(--bulma-radius-large) * 1.05);
+	border-radius: calc(var(--bulma-radius-large) * 1.05); /* mostly fixes weird inconsistency with .card-back */
 	border-style: solid;
 	border-width: 1px;
 	flex-basis: auto;
@@ -225,6 +320,8 @@ h1.title.name {
 	/* box-shadow: var(--bulma-card-shadow);
     color: var(--bulma-card-color); */
 	max-width: 100%;
+	margin-left: 0 !important;
+	margin-right: 0 !important;
 }
 
 .card-overlay::before {
@@ -300,7 +397,7 @@ h1.title.name {
 
 /* this is not the correct solution to the margin problem causing the offset of the front/back of cards */
 .column.card {
-	padding: 0px !important;
+	/* padding: 0px !important; */
 }
 
 .card.active {
@@ -363,4 +460,30 @@ h1.title.name {
 #filter i.active {
 	opacity: 1;
 	transform: scale(1); /* Scale to normal size */
+}
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.tag {
+	opacity: 0; /* Start hidden */
+	animation: fadeIn 0.5s ease forwards; /* The animation */
+}
+
+header,
+nav,
+#main,
+#bottom,
+#top,
+#cards,
+#sidebar,
+.flip-card {
+	/* border: 1px solid red; */
 }
