@@ -3,9 +3,16 @@
 		{
 			"position": "Design Engineer",
 			"employer": "Revology Cars",
-			"role_hw": ["3D Scanning", "3D Printing", "Data Acquisiton Module", "CAN bus"],
-			"role_sw": ["Catia V5", "Solidworks", "Design X", "Control X"],
-			"role_languages": [],
+			"role_tags": [
+				"3D Scanning",
+				"3D Printing",
+				"Data Acquisiton Module",
+				"CAN bus",
+				"Catia V5",
+				"Solidworks",
+				"Design X",
+				"Control X"
+			],
 			"roles": [
 				"Design and develop vehicle components, product fixtures, and test procedures using SOLIDWORKS and CATIA V5",
 				"Capture and assemble high-resolution 3D scans across all stages of component prototyping and vehicle production",
@@ -13,9 +20,18 @@
 				"Oversee utilization, configuration, upgrades, and maintenance of in-house 3D printer for rapid physical replication of prototype parts",
 				"Extreme owner for mechanical, electrical, and manufacturing design of classic-styled automatic transmission gear shifter that interfaces with modern transmissions—Revology’s first vehicle assembly being designed entirely in-house"
 			],
-			"achievement_hw": ["3D Scanner", "3D Printer", "Data Acquisiton Module", "CAN bus"],
-			"achievement_sw": ["Solidworks", "PlatformIO", "Dewesoft X", "EasyEDA"],
-			"achievement_languages": ["C++", "VBA"],
+			"achievement_tags": [
+				"3D Scanner",
+				"3D Printer",
+				"Data Acquisiton Module",
+				"CAN bus",
+				"Solidworks",
+				"PlatformIO",
+				"Dewesoft X",
+				"EasyEDA",
+				"C++",
+				"VBA"
+			],
 			"achievements": [
 				"Pioneered microcontroller-driven body control module with CAN bus integration that replaces mechanically-implemented circuits, reducing main wiring harness complexity by 34% and broadly enhancing the functional range of vehicle systems",
 				"Optimized paint baking process by augmenting oven times based on data analysis, ensuring unibodies reached target temperatures uniformly, reducing paint defects during assembly by 43%, and avoiding 14 hours of rework per vehicle",
@@ -26,38 +42,109 @@
 					"name": "Classic-to-Modern Shifter Adaptation",
 					"summary": "This is a placeholder summary for project 1.",
 					"description": "<p>Designed a classic-styled automatic transmission gear shifter for 1965-1968 Revology Mustang that interfaces natively with Revology's current production transmission, the Ford 10R80.</p>Responsibilities included:<ul><li>mechanical engineering and design</li><li>shifter indicator electrical logic diagramming and design</li><li>shifter indicator firmware programming</li><li>manufacturing process implementation</li></ul><p>This was Revology’s first vehicle component subassembly that was designed entirely in-house, with all parts being manufactured to Revology's specifications and no use of existing third-party replica components.</p>",
-					"hw": ["3D Printer", "3D Scanner", "CAN bus", "Microcontrollers", "PCBs"],
-					"sw": ["CATIA", "Design X", "EasyEDA", "PlatformIO"],
-					"languages": ["C++"],
-					"bg": "p1.jpg"
+					"project_tags": [
+						"3D Printer",
+						"3D Scanner",
+						"CAN bus",
+						"Microcontrollers",
+						"PCBs",
+						"CATIA",
+						"Design X",
+						"EasyEDA",
+						"PlatformIO",
+						"C++"
+					],
+					"media": [
+						{
+							"youtube": {
+								"url": "https://www.youtube.com/embed/si_kmQ5uotM?si=RWZS-Zj5pTJsrZ-D&amp;start=123",
+								"title": "T-handle Shifter Media Announcement",
+								"description": "Official Revology media debut for the T-handle shifter"
+							}
+						},
+						{
+							"image": {
+								"full": "CADing.png",
+								"thumbnail": "p1-thumb.jpg",
+								"background": "yes",
+								"title": "Computer-Aided Design",
+								"description": "Designing the CAD for the T-handle shifter in CATIA"
+							}
+						},
+						{
+							"image": {
+								"full": "scanning.jpg",
+								"thumbnail": "p3-thumb.jpg",
+								"title": "3D Scanning",
+								"description": "3D scanning a vehicle to validate prototype component fitment"
+							}
+						}
+					]
 				},
 				{
 					"name": "Placeholder Project 2",
 					"summary": "This is a placeholder summary for project 2.",
 					"description": "This is a placeholder description for project 2. It provides a detailed overview of the project's scope and objectives.",
-					"hw": ["3D Printer", "3D Scanner", "CAN bus", "Microcontrollers", "PCBs"],
-					"sw": ["CATIA", "Design X", "EasyEDA", "PlatformIO"],
-					"languages": ["C++"],
-					"bg": "p2.jpg"
+					"project_tags": [
+						"3D Printer",
+						"3D Scanner",
+						"CAN bus",
+						"Microcontrollers",
+						"PCBs",
+						"CATIA",
+						"Design X",
+						"EasyEDA",
+						"PlatformIO",
+						"C++"
+					],
+					"media": [
+						{
+							"image": {
+								"full": "p2.jpg",
+								"thumbnail": "p2-thumb.jpg",
+								"background": "yes",
+								"description": "Placeholder image description4."
+							}
+						}
+					]
 				},
 				{
 					"name": "Placeholder Project 3",
 					"summary": "This is a placeholder summary for project 3.",
 					"description": "This is a placeholder description for project 3. It provides a detailed overview of the project's scope and objectives.",
-					"hw": ["3D Printer", "3D Scanner", "CAN bus", "Microcontrollers", "PCBs"],
-					"sw": ["CATIA", "Design X", "EasyEDA", "PlatformIO"],
-					"languages": ["C++"],
-					"bg": "p3.jpg"
+					"project_tags": [
+						"3D Printer",
+						"3D Scanner",
+						"CAN bus",
+						"Microcontrollers",
+						"CATIA",
+						"Design X",
+						"EasyEDA",
+						"DOOKIE",
+						"C++"
+					],
+					"media": [
+						{
+							"image": {
+								"full": "p3.jpg",
+								"thumbnail": "p3-thumb.jpg",
+								"background": "yes",
+								"description": "Placeholder image description5."
+							}
+						}
+					]
 				}
 			]
 		},
 		{
 			"position": "Research Assistant",
 			"employer": "Interface Research Lab",
+			"role_tags": [],
 			"roles": [
 				"Oversaw the development of mobile applications tailored for retail businesses.",
 				"Managed a team of developers, designers, and QA testers."
 			],
+			"achievement_tags": [],
 			"achievements": [
 				"Led the team in a major project that resulted in a 50% reduction in customer complaints due to product issues.",
 				"Developed and executed a go-to-market strategy for three new applications."
@@ -67,102 +154,90 @@
 					"name": "Placeholder Project 4",
 					"summary": "This is a placeholder summary for project 4.",
 					"description": "This is a placeholder description for project 4. It provides a detailed overview of the project's scope and objectives.",
-					"hw": ["Python", "Node.js", "WebSocket"],
-					"sw": ["Python", "Node.js", "WebSocket"],
-					"languages": ["Flutter", "Firebase", "Dart"],
-					"bg": "p3.jpg"
+					"project_tags": ["Python", "Node.js", "WebSocket", "Flutter", "Firebase", "Dart"],
+					"media": []
 				},
 				{
 					"name": "Placeholder Project 5",
 					"summary": "This is a placeholder summary for project 5.",
 					"description": "This is a placeholder description for project 5. It provides a detailed overview of the project's scope and objectives.",
-					"hw": ["Python", "Node.js", "WebSocket"],
-					"sw": ["Python", "Node.js", "WebSocket"],
-					"languages": ["Ruby on Rails", "PostgreSQL", "Heroku"],
-					"bg": "p4.jpg"
+					"project_tags": ["Python", "Node.js", "WebSocket", "Ruby on Rails", "PostgreSQL", "Heroku"],
+					"media": []
 				},
 				{
 					"name": "Placeholder Project 6",
 					"summary": "This is a placeholder summary for project 6.",
 					"description": "This is a placeholder description for project 6. It provides a detailed overview of the project's scope and objectives.",
-					"languages": ["Ruby on Rails", "PostgreSQL", "Heroku"],
-					"bg": "p5.jpg"
+					"project_tags": ["Ruby on Rails", "PostgreSQL", "Heroku"],
+					"media": []
 				}
 			]
 		},
 		{
 			"position": "Combat Engineer",
 			"employer": "US Air Force Reserve",
+			"role_tags": [],
 			"roles": [
 				"Developed and maintained the website for the lab.",
 				"Designed and implemented a new website for the lab."
 			],
+			"achievement_tags": [],
 			"achievements": [],
 			"projects": [
 				{
 					"name": "Placeholder Project 7",
 					"summary": "This is a placeholder summary for project 7.",
 					"description": "This is a placeholder description for project 7. It provides a detailed overview of the project's scope and objectives.",
-					"hw": ["Python", "Node.js", "WebSocket"],
-					"sw": ["Python", "Node.js", "WebSocket"],
-					"languages": ["HTML5", "CSS3", "JavaScript"],
-					"bg": "p5.jpg"
+					"project_tags": ["Python", "Node.js", "WebSocket", "HTML5", "CSS3", "JavaScript"],
+					"media": []
 				},
 				{
 					"name": "Placeholder Project 8",
 					"summary": "This is a placeholder summary for project 8.",
 					"description": "This is a placeholder description for project 8. It provides a detailed overview of the project's scope and objectives.",
-					"hw": ["Python", "Node.js", "WebSocket"],
-					"sw": ["Python", "Node.js", "WebSocket"],
-					"languages": ["HTML5", "CSS3", "JavaScript"],
-					"bg": "p6.jpg"
+					"project_tags": ["Python", "Node.js", "WebSocket", "HTML5", "CSS3", "JavaScript"],
+					"media": []
 				},
 				{
 					"name": "Placeholder Project 9",
 					"summary": "This is a placeholder summary for project 9.",
 					"description": "This is a placeholder description for project 9. It provides a detailed overview of the project's scope and objectives.",
-					"hw": ["Python", "Node.js", "WebSocket"],
-					"sw": ["Python", "Node.js", "WebSocket"],
-					"languages": ["HTML5", "CSS3", "JavaScript"],
-					"bg": "p7.jpg"
+					"project_tags": ["Python", "Node.js", "WebSocket", "HTML5", "CSS3", "JavaScript"],
+					"media": []
 				}
 			]
 		},
 		{
 			"position": "Technical Flexpert",
 			"employer": "Whalen",
+			"role_tags": [],
 			"roles": [
 				"Developed and maintained the website for the lab.",
 				"Designed and implemented a new website for the lab."
 			],
+			"achievement_tags": [],
 			"achievements": [],
 			"projects": [
 				{
 					"name": "Placeholder Project 10",
 					"summary": "This is a placeholder summary for project 10.",
 					"description": "This is a placeholder description for project 10. It provides a detailed overview of the project's scope and objectives.",
-					"hw": ["Python", "Node.js", "WebSocket"],
-					"sw": ["Python", "Node.js", "WebSocket"],
-					"languages": ["HTML5", "CSS3", "JavaScript"],
-					"bg": "p5.jpg"
+					"project_tags": ["Python", "Node.js", "WebSocket", "HTML5", "CSS3", "JavaScript"],
+					"media": []
 				},
 				{
 					"name": "Placeholder Project 11",
 					"summary": "This is a placeholder summary for project 11.",
 					"description": "This is a placeholder description for project 11. It provides a detailed overview of the project's scope and objectives.",
-					"hw": ["Python", "Node.js", "WebSocket"],
-					"sw": ["Python", "Node.js", "WebSocket"],
-					"languages": ["HTML5", "CSS3", "JavaScript"],
-					"bg": "p6.jpg"
+					"project_tags": ["Python", "Node.js", "WebSocket", "HTML5", "CSS3", "JavaScript"],
+					"media": []
 				},
 				{
 					"name": "Placeholder Project 12",
 					"summary": "This is a placeholder summary for project 12.",
 					"description": "This is a placeholder description for project 12. It provides a detailed overview of the project's scope and objectives.",
-					"hw": ["Python", "Node.js", "WebSocket"],
-					"sw": ["Python", "Node.js", "WebSocket"],
-					"languages": ["Node.js", "AWS Lambda", "API Gateway"],
-					"bg": "p7.jpg"
+					"project_tags": ["Python", "Node.js", "WebSocket", "Node.js", "AWS Lambda", "API Gateway"],
+					"media": []
 				}
 			]
 		}

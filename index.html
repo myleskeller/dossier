@@ -1,10 +1,9 @@
-<!-- TODO: figure out why hover fade animation doesn't work for flip-cards -->
-<!-- TODO: add modal initiation to clicking on .current_project card -->
 <!-- TODO: attempt recycling #top with .position and .employer and remove .active card -->
 <!-- TODO: fix margins of all primary divs -->
-<!-- TODO: figure out viewport height discrepancy between Windows and Mac -->
 <!-- TODO: figure out scrollbar skinning for Windows (and Mac, i guess) -->
 <!-- TODO: figure out font inconsistencies between windows and Mac -->
+<!-- TODO: figure out proper height of x-axis edge gradient on #cards -->
+<!-- TODO: prevent tag animation from continuing when something else is clicked before it finishes -->
 
 <!DOCTYPE html>
 <html>
@@ -14,12 +13,19 @@
 		<title>Myles Keller</title>
 		<link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.2/css/all.css" />
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 		<link rel="stylesheet" href="style.css" />
 		<link rel="icon" href="favicon.svg" />
 		<link rel="”mask-icon”" href="favicon.svg”" color="#000000" />
 		<link rel="apple-touch-icon" href="apple-touch-icon.png" />
-
-		<script src="script.js"></script>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet" />
+		<script type="module" src="script.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 	</head>
 	<body>
 		<header>
@@ -52,11 +58,11 @@
 					<div class="navbar-end">
 						<div class="navbar-item">
 							<div class="buttons">
-								<button type="button" id="bg_toggle" class="button is-primary is-icon">
+								<!-- <button type="button" id="bg_toggle" class="button is-primary is-icon">
 									<span class="icon is-medium">
 										<i class="fa fa-lg fa-image"></i>
 									</span>
-								</button>
+								</button> -->
 
 								<button type="button" id="dark_toggle" class="button">
 									<span class="icon is-medium">
@@ -75,17 +81,19 @@
 											aria-controls="dropdown-menu1">
 											<span><strong>Résumé</strong></span>
 											<span class="icon is-small">
-												<i class="fas fa-angle-down" aria-hidden="true"></i>
+												<i class="fa fa-angle-down" aria-hidden="true"></i>
 											</span>
 										</button>
 									</div>
 									<div class="dropdown-menu" id="dropdown-menu1" role="menu">
 										<div class="dropdown-content">
-											<a href="#" class="dropdown-item">Defense</a>
-											<a href="#" class="dropdown-item">Automotive</a>
-											<a href="#" class="dropdown-item">Biomedical</a>
-											<a href="#" class="dropdown-item">Manufacturing</a>
-											<a href="#" class="dropdown-item">Software</a>
+											<a href="#" class="dropdown-item"><i class="fa-solid fa-explosion">&nbsp;</i>Defense</a>
+											<a href="#" class="dropdown-item"> <i class="fa-solid fa-car-side"> &nbsp;</i>Automotive</a>
+											<a href="#" class="dropdown-item"><i class="fa-solid fa-dna">&nbsp;</i>Biomedical</a>
+											<a href="#" class="dropdown-item"
+												><i class="fa-solid fa-industry-windows">&nbsp;</i>Manufacturing</a
+											>
+											<a href="#" class="dropdown-item"><i class="fa-solid fa-skull-crossbones">&nbsp;</i>Software</a>
 											<!-- <a href="#" class="dropdown-item level"><div class="level-left"><div class="level-item">Software</div></div><div class="level-right"><i class="level-item fa-solid fa-download"></i></div></a> -->
 											<hr class="dropdown-divider" />
 											<a href="#" class="dropdown-item">General (CV)</a>
@@ -135,7 +143,6 @@
 			</nav>
 		</header>
 
-		<!-- this id could easily be replaced with bulma class identifiers -->
 		<div id="container">
 			<nav class="box menu hidden" id="sidebar">
 				<p class="menu-label">Technologies</p>
@@ -154,7 +161,7 @@
 
 			<div id="main" class="top">
 				<div id="top" class="box content">
-					<h1>Howdy.</h1>
+					<h1>TODO: update the tag lexicon after you finish all of this content</h1>
 					<p>
 						I'm Myles Keller, an engineer with a multidisciplinary focus driven to develop innovative solutions
 						integrating both software and hardware.
@@ -179,7 +186,7 @@
 					</p>
 				</div>
 
-				<div id="cards" class="field is-grouped"></div>
+				<div id="cards" class="field is-grouped scrollbar"></div>
 				<div class="fade-overlay right"></div>
 				<div class="fade-overlay left"></div>
 				<div id="bottom" class="scrollable-parent box content hidden"></div>
@@ -309,5 +316,13 @@
 				</g>
 			</svg> -->
 		<!-- </div> -->
+
+		<div id="media-carousel-modal" class="modal">
+			<div class="modal-background"></div>
+			<div class="modal-content">
+				<div class="columns modal-images"></div>
+			</div>
+			<button class="modal-close is-large" aria-label="close"></button>
+		</div>
 	</body>
 </html>
